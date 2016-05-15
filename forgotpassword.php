@@ -12,24 +12,7 @@ if (isset($_SESSION['userSession']) != "") {
     header("Location: home.php");
 }
 include_once 'php/connectDB.php';
-
-if (isset($_POST['forgot'])) {
-    $email = $conn->real_escape_string(trim($_POST['email']));
-    $new_hash = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
-
-    if ($conn->query("UPDATE users SET password ='$new_hash' WHERE email='$email'")) {
-
-        $msg = "<div class='alert alert-success'>
-					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; You have successfully reset your password.
-				</div>";
-    } else {
-        $msg = "<div class='alert alert-danger'>
-						<span class='glyphicon glyphicon-info-sign'></span> &nbsp; You are not a member.<a href='register.php'>Sign up now!</a>
-					</div>";
-    }
-}
-
-$conn->close();
+include 'php/resetpassword.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -41,6 +24,7 @@ $conn->close();
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link rel="icon" href="img/logo-mobile.png">
 
 </head>
 <body class="index-background">
@@ -50,41 +34,51 @@ $conn->close();
     <div class="container">
 
         <div class="jumbotron center-block" style="width: 70%;margin-top: 10%;">
-        <form class="form-signin" method="post" id="register-form">
+            <form class="form-signin" method="post" id="register-form">
 
-            <h2 class="form-signin-heading">Forgot your password?</h2>
-            <hr/>
+                <h2 class="form-signin-heading hidden-xs" style="text-align: center;">Forgot your password?</h2>
+                <h4 class="visible-xs" style="text-align: center;">Forgot your password?</h4>
+                <hr/>
 
-            <?php
-            if (isset($msg)) {
-                echo $msg;
-            } else {
-            }
-            ?>
+                <?php
+                if (isset($msg)) {
+                    echo $msg;
+                } else {
+                }
+                ?>
 
 
-            <div class="form-group">
-                <input maxlength="40" type="email" class="form-control" placeholder="Email address" name="email" required/>
-                <span id="check-e"></span>
-            </div>
+                <div class="form-group">
+                    <input maxlength="40" type="email" class="form-control" placeholder="Email address" name="email"
+                           required/>
+                    <span id="check-e"></span>
+                </div>
 
-            <div class="form-group">
-                <input maxlength="100" type="password" class="form-control" placeholder="Password" name="new_password" required/>
-            </div>
+                <div class="form-group">
+                    <input maxlength="100" type="password" class="form-control" placeholder="Password"
+                           name="new_password" required/>
+                </div>
 
-            <hr/>
+                <hr/>
 
-            <div class="form-group">
-                <button type="submit" class="btn index-btn hidden-xs" name="forgot">
-                    <span class="glyphicon glyphicon-log-in"></span> &nbsp; Reset your Password
-                </button>
+                <div class="form-group">
+                    <button type="submit" class="btn index-btn hidden-xs" name="forgot">
+                        <span class="glyphicon glyphicon-log-in"></span> &nbsp; Reset your Password
+                    </button>
 
-                <a href="index.php" class="btn index-btn hidden-xs" style="float:right;">Log In Here</a>
+                    <a href="index.php" class="btn index-btn hidden-xs" style="float:right;">Log In Here</a>
+                </div>
 
-            </div>
+                <div class="form-group">
+                    <button type="submit" class="btn index-btn visible-xs center-block" name="forgot">
+                        <span class="glyphicon glyphicon-log-in"></span> &nbsp; Reset
+                    </button>
+                    <br>
+                    <a href="index.php" class="btn index-btn visible-xs center-block" style="width: 90px;">Log In</a>
+                </div>
 
-        </form>
-            </div>
+            </form>
+        </div>
 
     </div>
 

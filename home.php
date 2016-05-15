@@ -17,6 +17,7 @@ include 'php/CRUD.php';
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="img/logo-mobile.png">
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script type="text/javascript">
@@ -159,7 +160,7 @@ include 'php/CRUD.php';
                             </form>
                         </td>
                         <td class="col-xs-3 col-md-3">
-                            <form action="php/attachment.php" method="post">
+                            <form action="attachment.php" method="post">
                                 <input type="text" value="<?php echo $row['phoneName']; ?>" name="nameForPDF"
                                        style="display: none;">
                                 <input type="text" value="<?php echo $row['phoneNumber']; ?>" name="numberForPDF"
