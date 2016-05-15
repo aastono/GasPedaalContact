@@ -1,0 +1,30 @@
+.index-btn
+{
+    background-color: #eb5a0a;
+    color: #FFFFFF;
+}
+
+.index-btn:hover
+{
+    background-color: #f79520;
+    color: #FFFFFF;
+}
+
+.index-background
+{
+    background-color: #0f5e9b;
+
+}
+
+.navbar-properties {
+    background-color: #0f5e9b;
+}
+
+.navbar-properties li{
+    color: #FFFFFF;
+}
+
+.navbar-properties li:hover{
+    color: #000;
+}
+
