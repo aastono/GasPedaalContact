@@ -15,4 +15,4 @@ Account for testing: admin@admin.com with "admin" as the password. You can also 
 
 ######Notes
 - ConnectDB.php connects to a localhost server with "root" as username. If you do have different credentials to your server, please change it accordingly.
-- ONLY IF the "Send as Attachment" is not working, configure your php.ini file and change "exclude_globals" property to "On". Do not change if the function is working properly. Changing this property will result in malfunction of your server, to fix it revert that property back to "Off".
+- ONLY IF the "Send as Attachment" is not working, configure your php.ini file and change "exclude_globals" property to "On". Do not change if the function is working properly at the first place. Changing this property will result in malfunction of your server. To fix it, revert that property back to "Off".
