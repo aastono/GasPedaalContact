@@ -12,3 +12,7 @@ Main Features:
 
 #### Created by Aditya Astono from May 14th to May 16th 2016.
 Account for testing: admin@admin.com with "admin" as the password. You can also register yourself through the application.
+
+######Notes
+- ConnectDB.php connects to a localhost server with "root" as username. If you do have different credentials to your server, please change it accordingly.
+- Only if the "Send as Attachment" is not working, configure your php.ini file and change "exclude_globals" property to "On". Do not change if the function is working properly. Changing this property will result in malfunction of your server, to fix it revert that property back to "Off".
