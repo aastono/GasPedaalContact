@@ -11,3 +11,4 @@ Main Features:
 - Responsive design (Tested on 13" laptop, all iPhone variants, and Samsung Galaxy s6)
 
 #### Created by Aditya Astono from May 14th to May 16th 2016.
+Account for testing: admin@admin.com with "admin" as the password. You can also register yourself through the application.
