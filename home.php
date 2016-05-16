@@ -61,23 +61,27 @@ include 'php/CRUD.php';
             } ?></h3>
         <form method="post">
             <div class="center-block" style="min-width: 170px; width: 30%;">
-                <input style="margin-bottom: 5px;" class="center-block form-control" maxlength="40" required onfocus="this.placeholder = ''" type="text"
+                <input style="margin-bottom: 5px;" class="center-block form-control" maxlength="40" required
+                       onfocus="this.placeholder = ''" type="text"
                        name="phoneName"
                        placeholder="Caller Name"
                        value="<?php if (isset($_GET['edit'])) echo $getROW['phoneName']; ?>"/>
 
-                <input style="margin-bottom: 5px;" class="center-block form-control" maxlength="40" required onfocus="this.placeholder = ''" type="text"
+                <input style="margin-bottom: 5px;" class="center-block form-control" maxlength="40" required
+                       onfocus="this.placeholder = ''" type="text"
                        name="phoneNumber"
                        placeholder="Phone Number"
                        value="<?php if (isset($_GET['edit'])) echo $getROW['phoneNumber']; ?>"/>
 
-                <input style="margin-bottom: 5px;" class="center-block form-control" maxlength="40" onfocus="this.placeholder = ''"
+                <input style="margin-bottom: 5px;" class="center-block form-control" maxlength="40"
+                       onfocus="this.placeholder = ''"
                        type="text"
                        name="notes"
                        placeholder="Notes" value="<?php if (isset($_GET['edit'])) echo $getROW['notes']; ?>">
                 </input>
 
-                <input style="margin-bottom: 5px;" class="center-block form-control" required onfocus="this.placeholder = ''" type="text" name="timeOfCall"
+                <input style="margin-bottom: 5px;" class="center-block form-control" required
+                       onfocus="this.placeholder = ''" type="text" name="timeOfCall"
                        id="datepicker"
                        placeholder="Date of Call"
                        value="<?php if (isset($_GET['edit'])) echo $getROW['timeOfCall']; ?>">
@@ -106,46 +110,63 @@ include 'php/CRUD.php';
 
     <div class="input-group" style="margin-bottom: 20px;width: 40%;margin-left: 30%;z-index:1;">
         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
-        <input aria-describedby="basic-addon1" type="text" id="filter" class="form-control" placeholder="Search Contacts"/>
+        <input aria-describedby="basic-addon1" type="text" id="filter" class="form-control"
+               placeholder="Search Contacts"/>
     </div>
 
+    <?php
+    $numrows = $conn->query("SELECT * FROM contacts WHERE userID= '" . mysqli_real_escape_string($conn, $_SESSION['userSession']) . "' ORDER BY timeOfCall DESC");
+    $count = $numrows->num_rows;
+
+    if($count <2) {
+        ?>
+        <h4 class="hidden-xs" style="text-align: right; margin-right: 5px;"><?php echo $count; ?> Contact</h4>
+        <h4 class="visible-xs" style="text-align: center; margin-right: 5px;"><?php echo $count; ?> Contact</h4>
+        <?php
+    }
+    else {
+        ?>
+        <h4 class="hidden-xs" style="text-align: right; margin-right: 5px;"><?php echo $count; ?> Contacts</h4>
+        <h4 class="visible-xs" style="text-align: center; margin-right: 5px;"><?php echo $count; ?> Contacts</h4>
+        <?php
+    }
+    ?>
 
     <div id="postswrapper">
         <div class="table-responsive" style="align-content: center; overflow-x: auto;">
-            <table class="table table-striped" width="100%" cellspacing="0" style="word-wrap: break-word;">
+            <table class="table table-striped total-rows table-bordered" width="100%" cellspacing="0"
+                   style="word-wrap: break-word;">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>Date</th>
-                    <th>Notes</th>
+                    <th style="text-align: center;"><span class="glyphicon glyphicon-user"></span></th>
+                    <th style="text-align: center;"><span class="glyphicon glyphicon-phone"></span></th>
+                    <th style="text-align: center;"><span class="glyphicon glyphicon-calendar"></span></th>
+                    <th style="text-align: center;"><span class="glyphicon glyphicon-edit"></span></th>
+                    <th style="text-align: center;"></th>
                     <th></th>
-                    <th></th>
-                    <th>PDF</th>
-                    <th>Send by Email</th>
+                    <th style="text-align: center;">PDF</th>
+                    <th style="text-align: center;">Send by Email</th>
                 </tr>
                 </thead>
                 <?php
                 $res = $conn->query("SELECT * FROM contacts WHERE userID= '" . mysqli_real_escape_string($conn, $_SESSION['userSession']) . "' ORDER BY timeOfCall DESC");
-
                 while ($row = $res->fetch_array()) {
                     ?>
 
-
                     <tbody class="searchable">
                     <tr>
-                        <td class="col-xs-2 col-md-2"><?php echo $row['phoneName']; ?></td>
-                        <td class="col-xs-1 col-md-1"><?php echo $row['phoneNumber']; ?></td>
-                        <td class="col-xs-1 col-md-1"><?php echo $row['timeOfCall']; ?></td>
-                        <td class="col-xs-3 col-md-3"><?php echo $row['notes']; ?></td>
-                        <td class="col-xs-1 col-md-1"><a role="button" class="btn btn-block btn-warning"
+                        <td class="col-xs-2 col-md-2" style="text-align: center;padding-top: 1.5%;"><?php echo $row['phoneName']; ?></td>
+                        <td class="col-xs-1 col-md-1" style="padding-top: 1.5%;"><?php echo $row['phoneNumber']; ?></td>
+                        <td class="col-xs-1 col-md-1" style="padding-top: 1.5%;"><?php echo $row['timeOfCall']; ?></td>
+                        <td class="col-xs-3 col-md-3" style="padding-top: 1.5%;"><?php echo $row['notes']; ?></td>
+                        <td class="col-xs-1 col-md-1" style="padding-top: 1.5%;"><a role="button" class="btn btn-block btn-warning"
                                                          href="?edit=<?php echo $row['id']; ?>"><span
                                     class="glyphicon glyphicon-pencil" onclick="showadd()"></span></a></td>
-                        <td class="col-xs-1 col-md-1"><a role="button" class="btn btn-block btn-danger"
+                        <td class="col-xs-1 col-md-1" style="padding-top: 1.5%;"><a role="button" class="btn btn-block btn-danger"
                                                          href="?del=<?php echo $row['id']; ?>"
                                                          onclick="return confirm('Are you sure?')"><span
                                     class="glyphicon glyphicon-trash"></span></a></td>
-                        <td class="col-xs-1 col-md-1">
+                        <td class="col-xs-1 col-md-1" style="padding-top: 1.5%;">
                             <form action="php/form.php" method="post" target="_blank">
                                 <input type="text" value="<?php echo $row['phoneName']; ?>" name="nameForPDF"
                                        style="display: none;">
@@ -159,7 +180,7 @@ include 'php/CRUD.php';
                                         class="glyphicon glyphicon-save-file"></span></button>
                             </form>
                         </td>
-                        <td class="col-xs-3 col-md-3">
+                        <td class="col-xs-3 col-md-3" style="padding-top: 1.5%;">
                             <form action="attachment.php" method="post">
                                 <input type="text" value="<?php echo $row['phoneName']; ?>" name="nameForPDF"
                                        style="display: none;">
@@ -192,9 +213,7 @@ include 'php/CRUD.php';
 </body>
 
 <script type="text/javascript">
-
-
-    $(document).ready(function() {
+    $(document).ready(function () {
         (function ($) {
 
             $('#filter').keyup(function () {
@@ -205,11 +224,10 @@ include 'php/CRUD.php';
                     return rex.test($(this).text());
                 }).show();
 
-            })
 
+            })
         }(jQuery));
     });
-
 
 
     $(".attachment").click(function () {
