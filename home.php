@@ -191,7 +191,7 @@ include 'php/CRUD.php';
                                 <input type="text" value="<?php echo $row['notes']; ?>" name="notesForPDF"
                                        style="display: none;">
                                 <div class="input-group">
-                                    <input type="text" class="clearinput" name="recipient" placeholder="Email Address"
+                                    <input type="text" class="clearinput form-control" name="recipient" placeholder="Email Address"
                                            required/>
                             <span class="input-group-btn">
                                 <button type="submit" class="attachment btn btn-block btn-success"><span
