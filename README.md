@@ -12,7 +12,7 @@ Main Features:
 
 ####$Infinite Scroll
 #####Reason not to implement
-I believe that for this type of application, searching function is more essential than implementing infinite scrolling. Also, after done some research, infinite scrolling is used for multipage application, whileas this application (home.php to be precise) is only a single page application. Feedback are welcome here. :)
+I believe that for this type of application, searching function is more essential than implementing infinite scrolling. Also, after done some research, infinite scrolling is used for multipage application, whileas this application (home.php to be precise) is only a single page application. Feedbacks and opinions are always welcome here. :)
 
 #### Created by Aditya Astono from May 14th to May 16th 2016.
 Account for testing: admin@admin.com with "admin" as the password. You can also register yourself through the application.
