@@ -8,7 +8,7 @@ Main Features:
 - "Forgot password" functionality
 - Download contact details as a PDF document
 - Send contact details through email as an attachment.
-- Responsive design (Tested on 13" laptop, all iPhone variants, and Samsung Galaxy s6)
+- Responsive design (Tested on 13" laptop, all iPhone variants, and Samsung Galaxy s6 tested using RWD Tester)
 
 ####$Infinite Scroll
 #####Reason not to implement
